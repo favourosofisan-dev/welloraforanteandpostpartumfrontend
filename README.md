@@ -60,10 +60,18 @@ Create a Netlify project from the repo root:
 - Build command: `npm run build`
 - Publish directory: `dist`
 
-Set this Netlify environment variable:
+The Netlify config proxies `/api/*` to the deployed Vercel backend, so the app can work even if no frontend API variable is set. If you change the Vercel backend URL, update `netlify.toml`.
+
+You can also set this Netlify environment variable to call the backend directly from the browser:
 
 ```text
 VITE_API_BASE_URL=https://your-vercel-backend.vercel.app
+```
+
+If you use `VITE_API_BASE_URL`, Vercel must allow the Netlify origin. Set `FRONTEND_URL` in the Vercel backend project to the exact Netlify site URL, for example:
+
+```text
+FRONTEND_URL=https://your-netlify-site.netlify.app
 ```
 
 ## Media API
